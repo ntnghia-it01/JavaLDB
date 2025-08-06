@@ -9,10 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@NoArgsConstructor // Tạo hàm xây dựng không tham số
-//@AllArgsConstructor // Tạo hàm xây dựng có nhiều tham số
-//@Data // Tự tạo Getter/Setter
+@NoArgsConstructor // Tạo hàm xây dựng không tham số
+@AllArgsConstructor // Tạo hàm xây dựng có nhiều tham số
+@Data // Tự tạo Getter/Setter
 @Entity // Đăng ký class thành entity
 @Table(name = "User") // Đăng ký class nhận thông tin từ bảng User trong db
 public class User {
