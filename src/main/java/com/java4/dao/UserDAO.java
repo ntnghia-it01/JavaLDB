@@ -1,10 +1,10 @@
 package com.java4.dao;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import com.java4.config.DBConnection;
 import com.java4.entities.User;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 
 public class UserDAO {
 //	insert, update, delete 
@@ -110,6 +110,35 @@ public class UserDAO {
 
 			manager.close();
 			return query.getSingleResult() != null;
+		} catch (Exception e) {
+			manager.close();
+			return false;
+		}
+	}
+
+	public static boolean login(String email, String password) {
+		EntityManager manager = DBConnection.getEntityManager();
+		try {
+			String sql = "SELECT * FROM user WHERE Email=?1";
+			Query query = manager.createNativeQuery(sql, User.class);
+			query.setParameter(1, email);
+
+			if (query.getSingleResult() == null) {
+//				Không tìm thấy email 
+				manager.close();
+				return false;
+			}
+
+			User user = (User) query.getSingleResult();
+
+			if (user.getPassword().equals(password)) {
+				manager.close();
+				return true;
+			}
+
+			manager.close();
+			return false;
+
 		} catch (Exception e) {
 			manager.close();
 			return false;

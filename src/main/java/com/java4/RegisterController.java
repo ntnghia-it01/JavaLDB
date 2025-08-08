@@ -75,6 +75,7 @@ public class RegisterController extends HttpServlet {
 				req.setAttribute("errEmail", "Email đã tồn tại");
 			} else {
 				User user = new User();
+//				user.setId(0)
 				user.setEmail(email);
 				user.setPassword(password);
 				user.setFullName(fullName);
@@ -82,6 +83,7 @@ public class RegisterController extends HttpServlet {
 				UserDAO.insert(user);
 
 				resp.sendRedirect(req.getContextPath() + "/login");
+				return;
 			}
 		}
 

@@ -2,13 +2,14 @@ package com.java4.entities;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,9 @@ public class Video {
 	@Column(name = "Poster", nullable = false, length = 255)
 	private String poster;
 
+	@Column(name = "Url", nullable = false, length = 255)
+	private String url;
+
 	@Column(name = "Views", nullable = false)
 	private int views;
 
@@ -44,4 +48,11 @@ public class Video {
 
 	@OneToMany(mappedBy = "videoYoutube")
 	private List<Share> shares;
+
 }
+
+// giá trị ở JPS được lấy từ getter 
+// getId => video.getId()
+// jsp => video.id: Loại bỏ chữ "get" các ký tự phía sau chữ get
+// chuyển về đúng định dạng đặt tên biến của java 
+// getUrlImage => video.urlImage 

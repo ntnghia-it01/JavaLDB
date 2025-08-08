@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.java4.config.DBConnection;
 
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 
 // Tên path trong Web servlet phải là duy nhất trong cả dự án
 // Tên path bắt buộc phải bắt đầu bằng ký tự "/...."
