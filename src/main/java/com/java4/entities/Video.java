@@ -18,29 +18,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Video")
+@Table(name = "videos")
 public class Video {
-	@Column(name = "Id", nullable = false)
+	@Column(name = "id", nullable = false)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "Title", nullable = false, columnDefinition = "NVARCHAR (255)")
+	@Column(name = "title", nullable = false, columnDefinition = "NVARCHAR (255)")
 	private String title;
 
-	@Column(name = "Poster", nullable = false, length = 255)
+	@Column(name = "poster", nullable = false, length = 255)
 	private String poster;
 
-	@Column(name = "Url", nullable = false, length = 255)
+	@Column(name = "url", nullable = false, length = 255)
 	private String url;
 
-	@Column(name = "Views", nullable = false)
+	@Column(name = "views", nullable = false)
 	private int views;
 
-	@Column(name = "Description", nullable = false, columnDefinition = "NVARCHAR (2000)")
+	@Column(name = "description", nullable = false, columnDefinition = "NVARCHAR (2000)")
 	private String desc;
 
-	@Column(name = "Active", nullable = false)
+	@Column(name = "active", nullable = false)
 	private boolean active;
 
 	@OneToMany(mappedBy = "video")

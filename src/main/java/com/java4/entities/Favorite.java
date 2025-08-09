@@ -12,23 +12,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Favorite")
+@Table(name = "favorites")
 public class Favorite {
 // Tất cả khoá ngoại trong entity không được khai báo ở Java 
 
-	@Column(name = "Id", nullable = false)
+	@Column(name = "id", nullable = false)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "LikeDate", nullable = false)
+	@Column(name = "like_date", nullable = false)
 	private Date likeDate;
 
 	@ManyToOne
-	@JoinColumn(name = "UserId")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "VideoId")
+	@JoinColumn(name = "video_id")
 	private Video video;
 }

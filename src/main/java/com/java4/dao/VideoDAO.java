@@ -78,7 +78,7 @@ public class VideoDAO {
 		EntityManager manager = DBConnection.getEntityManager();
 		try {
 
-			String sql = "SELECT * FROM Video";
+			String sql = "SELECT * FROM videos";
 
 			Query query = manager.createNativeQuery(sql, Video.class);
 

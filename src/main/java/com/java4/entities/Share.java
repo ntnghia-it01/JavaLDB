@@ -12,25 +12,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Share")
+@Table(name = "shares")
 public class Share {
 
-	@Column(name = "Id", nullable = false)
+	@Column(name = "id", nullable = false)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "Emails", nullable = false, length = 255)
+	@Column(name = "emails", nullable = false, length = 255)
 	private String email;
 
-	@Column(name = "ShareDate", nullable = false)
+	@Column(name = "share_date", nullable = false)
 	private Date shareDate;
 
 	@ManyToOne
-	@JoinColumn(name = "UserId")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "VideoId")
+	@JoinColumn(name = "video_id")
 	private Video videoYoutube;
 }

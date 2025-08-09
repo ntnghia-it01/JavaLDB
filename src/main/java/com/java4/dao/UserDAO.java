@@ -101,7 +101,7 @@ public class UserDAO {
 //			String sql = "SELECT * FROM User u WHERE u.email=?1";
 //			TypedQuery<User> user = manager.createQuery(sql, null)
 
-			String sql = "SELECT * FROM user WHERE Email=?1";
+			String sql = "SELECT * FROM users WHERE email=?1";
 			Query query = manager.createNativeQuery(sql, User.class);
 			query.setParameter(1, email);
 
@@ -119,7 +119,7 @@ public class UserDAO {
 	public static boolean login(String email, String password) {
 		EntityManager manager = DBConnection.getEntityManager();
 		try {
-			String sql = "SELECT * FROM user WHERE Email=?1";
+			String sql = "SELECT * FROM users WHERE email=?1";
 			Query query = manager.createNativeQuery(sql, User.class);
 			query.setParameter(1, email);
 
