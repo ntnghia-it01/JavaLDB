@@ -37,7 +37,13 @@
 			      <td>${item.views}</td>
 			      <td>${item.favorites.size()}</td>
 			      <td>${item.shares.size()}</td>
-			      <td>@mdo</td>
+			      <td>
+			      	<form method="POST"
+			      		action="${pageContext.request.contextPath}/admin/video-delete">
+			      		<input type="hidden" name="id" value="${item.id}"/>
+			      		<button class="btn btn-danger">Xoá</button>
+			      	</form>
+			      </td>
 			    </tr>
 		  	</c:forEach>
 		  </tbody>

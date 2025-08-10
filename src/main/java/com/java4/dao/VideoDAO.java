@@ -25,6 +25,7 @@ public class VideoDAO {
 			manager.close();
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			manager.getTransaction().rollback();
 			manager.close();
 			return false;
@@ -65,9 +66,24 @@ public class VideoDAO {
 			manager.close();
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			manager.getTransaction().rollback();
 			manager.close();
 			return false;
+		}
+	}
+
+	public static Video findById(String id) {
+		EntityManager manager = DBConnection.getEntityManager();
+		try {
+			Video video = manager.find(Video.class, Integer.parseInt(id));
+
+			manager.close();
+			return video;
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.close();
+			return null;
 		}
 	}
 

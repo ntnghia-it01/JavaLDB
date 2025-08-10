@@ -14,20 +14,24 @@
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">Tiêu đề</label>
 			  <input value="${title}" name="title" type="text" class="form-control" id="exampleFormControlInput1">
+			  <small class="text-danger">${errTitle}</small>
 			</div>
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">URL Ảnh</label>
 			  <input value="${urlImage}" name="urlImage" type="text" class="form-control" id="exampleFormControlInput1">
+			  <small class="text-danger">${errImage}</small>
 			</div>
 			
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">URL Video</label>
 			  <input value="${urlVideo}" name="urlVideo" type="text" class="form-control" id="exampleFormControlInput1">
+			  <small class="text-danger">${errVideo}</small>
 			</div>
 			
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">Mô tả</label>
 			  <textarea name="desc" class="form-control" rows="4">${desc}</textarea>
+			  <small class="text-danger">${errDesc}</small>
 			</div>
 			
 			<div class="mb-3">

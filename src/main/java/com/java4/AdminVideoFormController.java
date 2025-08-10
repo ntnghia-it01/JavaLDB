@@ -50,13 +50,13 @@ public class AdminVideoFormController extends HttpServlet {
 			hasError = true;
 		}
 
-		if (urlImage.matches(
+		if (!urlImage.matches(
 				"[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")) {
 			req.setAttribute("errImage", "Url ảnh sai định dạng");
 			hasError = true;
 		}
 
-		if (urlVideo.matches(
+		if (!urlVideo.matches(
 				"[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")) {
 			req.setAttribute("errVideo", "Url video sai định dạng");
 			hasError = true;
@@ -80,6 +80,8 @@ public class AdminVideoFormController extends HttpServlet {
 
 			VideoDAO.insert(video);
 			resp.sendRedirect(req.getContextPath() + "/admin/videos");
+
+			return;
 		}
 
 		req.getRequestDispatcher("/admin-video-form.jsp").forward(req, resp);
