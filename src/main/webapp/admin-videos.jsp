@@ -43,6 +43,8 @@
 			      		<input type="hidden" name="id" value="${item.id}"/>
 			      		<button class="btn btn-danger">Xoá</button>
 			      	</form>
+			      	
+			      	<a class="btn btn-warning" href="${pageContext.request.contextPath}/admin/video-form?video_id=${item.id}">Sửa</a>
 			      </td>
 			    </tr>
 		  	</c:forEach>

@@ -17,6 +17,23 @@ public class AdminVideoFormController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+//		Lấy giá trị của id từ url 
+//		url không tồn tại video_id => id == null 
+		String id = req.getParameter("video_id");
+
+		if (id != null) {
+//			lấy thông tin video từ database
+			Video video = VideoDAO.findById(id);
+
+			req.setAttribute("title", video.getTitle());
+			req.setAttribute("urlImage", video.getPoster());
+			req.setAttribute("urlVideo", video.getUrl());
+			req.setAttribute("desc", video.getDesc());
+			req.setAttribute("status", video.isActive() ? "1" : "0");
+//			bắt buộc phải có khi sửa đối tượng 
+			req.setAttribute("id", video.getId());
+		}
+
 		req.getRequestDispatcher("/admin-video-form.jsp").forward(req, resp);
 	}
 
@@ -30,6 +47,7 @@ public class AdminVideoFormController extends HttpServlet {
 		String urlVideo = req.getParameter("urlVideo");
 		String desc = req.getParameter("desc");
 		String status = req.getParameter("status");
+		String id = req.getParameter("id");
 
 //		Gửi dữ liệu ngược lại qua form 
 		req.setAttribute("title", title);
@@ -37,6 +55,7 @@ public class AdminVideoFormController extends HttpServlet {
 		req.setAttribute("urlVideo", urlVideo);
 		req.setAttribute("desc", desc);
 		req.setAttribute("status", status);
+		req.setAttribute("id", id);
 
 //		validate 
 //		- Tiêu đề không rỗng 
@@ -78,7 +97,19 @@ public class AdminVideoFormController extends HttpServlet {
 			video.setActive(status.equals("1"));
 			video.setViews(0);
 
-			VideoDAO.insert(video);
+			if (!id.equals("0")) {
+//				Có id mới sửa được 
+				video.setId(Integer.parseInt(id));
+
+//				Lấy lượt xem trong db để lưu lại
+//				Không set lượt xem về 0 khi update 
+				Video videoDB = VideoDAO.findById(id);
+				video.setViews(videoDB.getViews());
+
+				VideoDAO.update(video);
+			} else {
+				VideoDAO.insert(video);
+			}
 			resp.sendRedirect(req.getContextPath() + "/admin/videos");
 
 			return;

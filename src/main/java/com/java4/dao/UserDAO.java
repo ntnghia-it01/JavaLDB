@@ -116,7 +116,7 @@ public class UserDAO {
 		}
 	}
 
-	public static boolean login(String email, String password) {
+	public static User login(String email, String password) {
 		EntityManager manager = DBConnection.getEntityManager();
 		try {
 			String sql = "SELECT * FROM users WHERE email=?1";
@@ -126,22 +126,36 @@ public class UserDAO {
 			if (query.getSingleResult() == null) {
 //				Không tìm thấy email 
 				manager.close();
-				return false;
+				return null;
 			}
 
 			User user = (User) query.getSingleResult();
 
 			if (user.getPassword().equals(password)) {
 				manager.close();
-				return true;
+				return user;
 			}
 
 			manager.close();
-			return false;
+			return null;
 
 		} catch (Exception e) {
 			manager.close();
-			return false;
+			return null;
+		}
+	}
+
+	public static User findById(String id) {
+		EntityManager manager = DBConnection.getEntityManager();
+		try {
+			User user = manager.find(User.class, Integer.parseInt(id));
+
+			manager.close();
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			manager.close();
+			return null;
 		}
 	}
 }

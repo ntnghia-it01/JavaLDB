@@ -4,11 +4,13 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java4.dao.UserDAO;
+import com.java4.entities.User;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -49,10 +51,23 @@ public class LoginController extends HttpServlet {
 		}
 
 		if (!hasError) {
-			boolean login = UserDAO.login(email, password);
+			User user = UserDAO.login(email, password);
 
-			if (login) {
-				resp.sendRedirect(req.getContextPath() + "/");
+			if (user != null) {
+//				Lưu user id và role vào cookie để quản lý thông 
+				Cookie cookieUserId = new Cookie("user_id", String.valueOf(user.getId()));
+				Cookie cookieRole = new Cookie("role", user.isAdmin() ? "admin" : "user");
+
+				resp.addCookie(cookieUserId);
+				resp.addCookie(cookieRole);
+
+//				Kiểm tra vài trò để chuyển trang 
+				if (user.isAdmin()) {
+					resp.sendRedirect(req.getContextPath() + "/admin/videos");
+				} else {
+					resp.sendRedirect(req.getContextPath() + "/");
+				}
+
 				return;
 			}
 

@@ -11,6 +11,7 @@
 	<div class="col-6 offset-3">
 		<form method="POST"
 			action="${pageContext.request.contextPath}/admin/video-form">
+			<input type="hidden" name="id" value="${id != null ? id : 0}"/>
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">Tiêu đề</label>
 			  <input value="${title}" name="title" type="text" class="form-control" id="exampleFormControlInput1">
@@ -51,7 +52,7 @@
 				</div>
 			</div>
 			
-			<button type="submit" class="btn btn-primary">Thêm video</button>
+			<button type="submit" class="btn btn-primary">${id != null ? 'Cập nhật video' : 'Thêm video'}</button>
 		</form>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
