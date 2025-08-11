@@ -17,7 +17,7 @@ import com.java4.entities.Favorite;
 import com.java4.entities.User;
 import com.java4.entities.Video;
 
-@WebServlet("/favorites")
+@WebServlet("/user/favorites")
 public class FavoriteController extends HttpServlet {
 
 //	danh sách yêuh thích

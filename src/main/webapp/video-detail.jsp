@@ -12,9 +12,21 @@
 	<h1>${video.views}</h1>
 	<h1>Trạng thái yêu thích: ${favorite == null ? 'Không' : 'Có'}</h1>
 	<form method="POST"
-		action="${pageContext.request.contextPath}/favorites">
+		action="${pageContext.request.contextPath}/user/favorites">
 		<input type="hidden" name="video_id" value="${video.id}"/>
 		<button class="btn btn-primary" type="submit">Yêu thích</button>
+	</form>
+	
+	<form method="POST"
+		action="${pageContext.request.contextPath}/user/share">
+		<input type="hidden" name="video_id" value="${video.id}"/>
+		
+		<div class="mb-3">
+		  <label for="exampleFormControlInput1" class="form-label">Email</label>
+		  <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+		</div>
+		
+		<button class="btn btn-primary" type="submit">Chia sẽ</button>
 	</form>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
